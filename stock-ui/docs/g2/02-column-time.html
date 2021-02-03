@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://gw.alipayobjects.com/os/lib/antv/g2/3.4.10/dist/g2.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/locale/zh-cn.js"></script>
+  <script type="text/javascript" src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
+</head>
+
+<body>
+  <div id="c1"></div>
+</body>
+
+<script>
+  const chart = new G2.Chart({
+    container: 'c1', // 指定图表容器 ID
+    width: 800, // 指定图表宽度
+    height: 300 // 指定图表高度
+  });
+
+  function getAxisX(dataList) {
+    const curTime = parseInt(Date.now() / (1000 * 3600)) * (1000 * 3600)
+    const hList = []
+    for (let index = 0; index < 24; index++) {
+      const endTime = curTime - index * 3600 * 1000
+      hList.unshift({
+        start: endTime - 3600 * 1000,
+        end: endTime,
+        value: 0,
+        label: moment(endTime).format('HH:mm'),
+      })
+    }
+    hList.forEach((el) => {
+      dataList.forEach((d) => {
+        if (+d.time >= el.start && +d.time < el.end) {
+          el.value += 1
+        }
+      })
+    })
+    return hList
+  }
+
+  axios.get('http://localhost:3030/error/page?pageSize=0&start_time=1611196115503').then(res => {
+    const list = res.data.data.list;
+    const data = getAxisX(list)
+    console.log(data)
+
+    chart.source(data);
+    chart.interval().position('label*value').color('genre')
+    chart.render();
+  })
+</script>
+
+</html>

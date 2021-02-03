@@ -1,0 +1,136 @@
+body {
+  font-size: 14px;
+  color: #333;
+  background-color: #f0f2f5;
+}
+
+body {
+  @for $i from 0 through 200 {
+    .radius-#{$i} {
+      border-radius: 1px * $i !important;
+    }
+  }
+  .fl {
+    float: left;
+  }
+  .fr {
+    float: right;
+  }
+  .text-gray {
+    color: #a2a2a2;
+  }
+  .u-full {
+    width: 100%;
+  }
+  .u-clickable{
+    color: #657dbc;
+    cursor: pointer;
+  }
+}
+
+// 输入框
+.u-sm-input {
+  width: 280px !important;
+}
+.u-md-input {
+  width: 400px;
+}
+.u-md-form-item {
+  width: 400px;
+}
+.input-small {
+  width: 240px;
+}
+
+.el-select {
+  width: 100%;
+}
+
+.el-cascader {
+  width: 100%;
+}
+
+.ui-yen {
+  color: #FF0036;
+  height: 36px;
+  line-height: 36px;
+}
+
+body {
+  .collpase-menu {
+    .sidebar {
+      width: 64px;
+    }
+    .main {
+      padding-left: 64px;
+    }
+  }
+  .el-menu--collapse .el-menu-item span,
+  .el-menu--collapse > .el-submenu>.el-submenu__title span,
+  .el-menu--collapse .el-submenu .el-submenu__title span,
+  .el-menu--collapse .el-submenu .el-submenu__title .el-submenu__icon-arrow
+  {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    visibility: hidden;
+    display: inline-block;
+  }
+
+  .el-date-table td {
+    padding: 0;
+  }
+
+  .el-date-editor--datetimerange.el-input,
+  .el-date-editor--datetimerange.el-input__inner {
+    width: 340px;
+    padding-right: 0;
+  }
+  .el-date-editor .el-range-input {
+    width: 40%;
+  }
+  .el-date-range-picker__content {
+    padding: 0;
+  }
+  .el-date-range-picker__header {
+    padding: 8px 12px;
+    padding-bottom: 0px;
+  }
+  .el-popper[x-placement^=bottom] {
+    margin-top: 4px;
+  }
+  .popper__arrow {
+    display: none !important;
+  }
+  .el-date-range-picker.has-sidebar {
+    width: 680px;
+  }
+  .el-picker-panel__shortcut {
+    font-size: 12px;
+  }
+  .el-date-range-picker__header div {
+    font-size: 14px;
+  }
+  .el-range__close-icon {
+    display: none;
+    width: 0 !important;
+  }
+
+  .el-dialog__body {
+    padding: 20px 24px;
+    padding-bottom: 0;
+  }
+  .el-form--label-top .el-form-item__label {
+    line-height: 18px;
+    padding-bottom: 6px;
+  }
+  .el-dialog__footer {
+    padding-bottom: 12px;
+  }
+  .el-pagination {
+    .el-input--mini .el-input__inner {
+      height: 22px;
+      line-height: 22px;
+    }
+  }
+}

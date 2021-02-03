@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://gw.alipayobjects.com/os/lib/antv/g2/3.4.10/dist/g2.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/locale/zh-cn.js"></script>
+  <script type="text/javascript" src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
+</head>
+
+<body>
+  <!-- 引入在线资源 -->
+  <div id="c1"></div>
+</body>
+<script>
+  const data = [{
+      genre: 'Sports',
+      sold: 275
+    },
+    {
+      genre: 'Strategy',
+      sold: 115
+    },
+    {
+      genre: 'Action',
+      sold: 120
+    },
+    {
+      genre: 'Shooter',
+      sold: 350
+    },
+    {
+      genre: 'Other',
+      sold: 150
+    }
+  ];
+
+  const chart = new G2.Chart({
+    container: 'c1', // 指定图表容器 ID
+    width: 600, // 指定图表宽度
+    height: 300 // 指定图表高度
+  });
+
+  chart.source(data);
+
+  chart.interval().position('genre*sold').color('genre')
+
+  chart.render();
+</script>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,height=device-height">
+  <title>某产品国内销售趋势</title>
+  <style>
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    html,
+    body {
+      overflow: hidden;
+      height: 100%;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="c1"></div>
+  <script>
+    /*Fixing iframe window.innerHeight 0 issue in Safari*/
+    document.body.clientHeight;
+  </script>
+  <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.10.1/dist/data-set.min.js"></script>
+  <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.5.1/dist/g2.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/locale/zh-cn.js"></script>
+  <script type="text/javascript" src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
+  <script>
+
+  function getAxisX(dataList) {
+    const curTime = parseInt(Date.now() / (1000 * 3600)) * (1000 * 3600)
+    const hList = []
+    for (let index = 0; index < 24; index++) {
+      const endTime = curTime - index * 3600 * 1000
+      hList.unshift({
+        start: endTime - 3600 * 1000,
+        end: endTime,
+        value: 0,
+        date: moment(endTime).format('HH:mm'),
+      })
+    }
+    hList.forEach((el) => {
+      dataList.forEach((d) => {
+        if (+d.time >= el.start && +d.time < el.end) {
+          el.value += 1
+        }
+      })
+    })
+    return hList
+  }
+
+  
+  axios.get('http://localhost:3030/error/page?pageSize=0&start_time=1611196115503').then(res => {
+    const list = res.data.data.list;
+    const data = getAxisX(list)
+
+    var TICKS = [];
+    for(let index = 0; index < 24; index += 2) {
+      TICKS.push(data[index].date)
+    }
+    console.log(data)
+    console.log(TICKS)
+
+    const chart = new G2.Chart({
+      container: 'c1', // 指定图表容器 ID
+      width: 800, // 指定图表宽度
+      height: 300 // 指定图表高度
+    });
+
+    chart.source(data, {
+      date: {
+        ticks: TICKS
+      }
+    });
+    chart.axis('value');
+    chart.axis('date', {
+      label: {
+        textStyle: {
+          fill: '#aaaaaa'
+        }
+      }
+    });
+    chart.interval().position('date*value')
+    // chart.line().position('date*value');
+    chart.render();
+  })
+
+    
+      // var chart = new G2.Chart({
+      //   container: 'mountNode',
+      //   forceFit: true,
+      //   height: 360,
+      //   width: 800,
+      //   padding: [50, 20, 50, 20]
+      // });
+      // chart.source(data, {
+      //   date: {
+      //     ticks: TICKS
+      //   }
+      // });
+      // chart.legend(false);
+      // chart.axis('buyin', false);
+      // chart.axis('date', {
+      //   label: {
+      //     textStyle: {
+      //       fill: '#aaaaaa'
+      //     }
+      //   }
+      // });
+      // chart.line().position('date*buyin');
+      // chart.render();
+  </script>
+</body>
+
+</html>

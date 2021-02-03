@@ -1,0 +1,26 @@
+$--color-primary: #424656;
+
+// button
+$--button-border-radius: 2px;
+$--button-medium-border-radius: 2px;
+$--button-small-border-radius: 2px;
+$--button-mini-border-radius: 2px;
+
+// input
+$--input-border-radius: 2px;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
+
+.el-button {
+  font-weight: 400;
+}
+.el-button--small {
+  padding: 8px 10px;
+}
+
+.el-form-item__label {
+  font-size: 12px;
+}

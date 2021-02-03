@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,height=device-height">
+  <title>某产品国内销售趋势</title>
+  <style>
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    html,
+    body {
+      overflow: hidden;
+      height: 100%;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="mountNode"></div>
+  <script>
+    /*Fixing iframe window.innerHeight 0 issue in Safari*/
+    document.body.clientHeight;
+  </script>
+  <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.5.1/dist/g2.min.js"></script>
+  <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.10.1/dist/data-set.min.js"></script>
+  <script src="https://gw.alipayobjects.com/os/antv/assets/lib/jquery-3.2.1.min.js"></script>
+  <script>
+
+
+    var TICKS = ["2012-09", "2013-05", "2014-01", "2014-09", "2015-05", "2016-01", "2016-09", "2017-05", "2018-02"];
+    $.getJSON('https://gw.alipayobjects.com/os/antvdemo/assets/data/salesTrend.json', function (data) {
+      console.log(data)
+      var chart = new G2.Chart({
+        container: 'mountNode',
+        forceFit: true,
+        height: 360,
+        width: 800,
+        padding: [50, 20, 50, 20]
+      });
+      chart.source(data, {
+        date: {
+          ticks: TICKS
+        }
+      });
+      chart.axis('date', {
+        label: {
+          textStyle: {
+            fill: '#aaaaaa'
+          }
+        }
+      });
+      chart.line().position('date*buyin');
+      chart.render();
+    });
+  </script>
+</body>
+
+</html>
