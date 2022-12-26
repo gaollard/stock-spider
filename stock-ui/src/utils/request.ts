@@ -4,8 +4,8 @@ import * as store from "store";
 import { Message } from "element-ui";
 
 export const isProd = process.env.NODE_ENV === "production";
-// export const host = "http://localhost:8003";
-export const host = "http://47.112.180.188:3040";
+export const host = "http://localhost:8003";
+// export const host = "http://47.112.180.188:3040";
 
 export const instance = axios.create({
   timeout: 10 * 1000
