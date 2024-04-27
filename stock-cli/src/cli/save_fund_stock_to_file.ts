@@ -37,36 +37,11 @@ interface Item {
   }
 })()
 
-async function query_by_mx_api(funder_code: string) {
-   // 访问基金详情页面
-   return await fetch(`https://fund.eastmoney.com/${funder_code}.html`, {
-    "headers": {
-      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-      "accept-language": "zh-CN,zh;q=0.9",
-      "cache-control": "max-age=0",
-      "if-modified-since": "Sat, 30 Mar 2024 02:58:02 GMT",
-      "if-none-match": "W/\"66077fba-1c9a6\"",
-      "sec-ch-ua": "\"Google Chrome\";v=\"123\", \"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"123\"",
-      "sec-ch-ua-mobile": "?0",
-      "sec-ch-ua-platform": "\"macOS\"",
-      "sec-fetch-dest": "document",
-      "sec-fetch-mode": "navigate",
-      "sec-fetch-site": "none",
-      "sec-fetch-user": "?1",
-      "upgrade-insecure-requests": "1",
-      "cookie": "qgqp_b_id=85e06bb41788f93f88be62752cbe29fa; websitepoptg_api_time=1711720458883; HAList=ty-0-300124-%u6C47%u5DDD%u6280%u672F%2Cty-0-000628-%u9AD8%u65B0%u53D1%u5C55%2Cty-0-000661-%u957F%u6625%u9AD8%u65B0%2Cty-1-600203-%u798F%u65E5%u7535%u5B50%2Cty-1-688221-%u524D%u6CBF%u751F%u7269-U%2Cty-0-002424-%u8D35%u5DDE%u767E%u7075; st_si=86975610485587; st_asi=delete; FundWebTradeUserInfo=JTdCJTIyQ3VzdG9tZXJObyUyMjolMjIlMjIsJTIyQ3VzdG9tZXJOYW1lJTIyOiUyMiUyMiwlMjJWaXBMZXZlbCUyMjolMjIlMjIsJTIyTFRva2VuJTIyOiUyMiUyMiwlMjJJc1Zpc2l0b3IlMjI6JTIyJTIyLCUyMlJpc2slMjI6JTIyJTIyLCUyMlN1cnZleURheSUyMjowLCUyMklzQXVkaXROZWVkUG9wJTIyOnRydWUlN0Q%3D; _adsame_fullscreen_18503=1; EMFUND0=03-29%2023%3A22%3A36@%23%24%u62DB%u5546%u6210%u957F%u5148%u5BFC%u80A1%u7968A@%23%24014589; EMFUND1=03-29%2022%3A45%3A58@%23%24%u5609%u5B9E%u7F8E%u56FD%u6210%u957F%u80A1%u7968%u4EBA%u6C11%u5E01@%23%24000043; EMFUND2=03-29%2023%3A06%3A58@%23%24%u4E2D%u52A0%u8F6C%u578B%u52A8%u529B%u6DF7%u5408A@%23%24005775; EMFUND3=03-30%2010%3A23%3A11@%23%24%u534E%u5B9D%u5236%u9020%u80A1%u7968@%23%24000866; EMFUND4=03-30%2010%3A23%3A11@%23%24%u5174%u94F6%u6D88%u8D39%u65B0%u8D8B%u52BF%u7075%u6D3B%u914D%u7F6EC@%23%24018658; EMFUND5=03-30%2009%3A35%3A11@%23%24%u5E7F%u53D1%u7EB3%u65AF%u8FBE%u514B100ETF%u8054%u63A5%u4EBA%u6C11%u5E01%28QDII%29A@%23%24270042; EMFUND6=03-30%2009%3A35%3A21@%23%24%u535A%u65F6%u6807%u666E500ETF%u8054%u63A5A@%23%24050025; EMFUND8=03-30%2010%3A23%3A11@%23%24%u6469%u6839%u65F6%u4EE3%u777F%u9009%u80A1%u7968C@%23%24014342; ASP.NET_SessionId=4bjfdyhyhg0ppgbwtgtpbmsc; EMFUND9=03-30%2011%3A02%3A01@%23%24%u6C47%u6DFB%u5BCC%u5916%u5EF6%u589E%u957F%u80A1%u7968A@%23%24000925; EMFUND7=03-30 11:12:11@#$%u5E7F%u53D1%u8D44%u6E90%u4F18%u9009%u80A1%u7968A@%23%24005402; st_pvi=26377708967691; st_sp=2024-02-25%2021%3A55%3A01; st_inirUrl=https%3A%2F%2Fwww.baidu.com%2Flink; st_sn=6; st_psi=20240330111210711-112200305282-0188855710"
-    },
-    "referrerPolicy": "strict-origin-when-cross-origin",
-    "body": null,
-    "method": "GET"
-  }).then((res) => res.text())
-}
-
 /**
  * 查询基金的持仓明细
  */
 async function query_by_ccmx_api(fund_code: string, fund_name: string) {
-  const data = await fetch(`https://fundf10.eastmoney.com/FundArchivesDatas.aspx?type=jjcc&code=${fund_code}&topline=10&year=&month=12&rt=0.7986558010439477`, {
+  const data = await fetch(`https://fundf10.eastmoney.com/FundArchivesDatas.aspx?type=jjcc&code=${fund_code}&topline=20&year=&month=&rt=0.7986558010439477`, {
     "headers": {
       "accept": "*/*",
       "accept-language": "zh-CN,zh;q=0.9",
