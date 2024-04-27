@@ -1,17 +1,13 @@
-## 基金持有家数统计
+## 股票被基金持有家数排名
 
 ```sql
 select stock_code, stock_name, count(`fund_code`) as cnt from `t_funder_stock_month` group by `stock_code` order by cnt desc;
 ```
-
-## 基金持有金额统计
-
 ## 股票查询
 
 ```sql
 select * from `t_funder_stock_month` where `stock_title` = "三七互娱"
 ```
-
 
 ## 数据表
 
