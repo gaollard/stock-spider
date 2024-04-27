@@ -75,7 +75,6 @@ async function grabCurrentPage(type: string, content: string) {
     const insertList = chunks[i].filter((it) => {
       return !dbList.find((o) => o.code === it.code)
     })
-    console.log(`insertList`, insertList)
     if (insertList.length) {
       await dataSource.getRepository(Funder).save(insertList);
     }

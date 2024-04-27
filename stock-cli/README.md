@@ -17,3 +17,7 @@ select * from `t_funder_stock_month` where `stock_title` = "三七互娱"
 - t_stock_day 股票每日涨幅
 - t_stock_week 股票5日涨幅
 - t_stock_month 股票月度涨幅
+
+## 东方财富基金排行
+
+https://fund.eastmoney.com/data/fundranking.html#tall;c0;r;s1nzf;pn50;ddesc;qsd20230427;qed20240427;qdii;zq;gg;gzbd;gzfs;bbzt;sfbb

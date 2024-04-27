@@ -25,4 +25,7 @@ export class FunderStockMonth {
 
   @Column({})
   money: string;
+
+  @Column({})
+  term: string;
 }
