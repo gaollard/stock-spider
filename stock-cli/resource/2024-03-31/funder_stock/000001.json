@@ -1,1 +1,92 @@
-[{"stock_code":"002025","stock_name":"航天电器","fund_code":"000001","fund_name":"华夏成长混合","ratio":"3.46%","count":"209.92","money":"7947.67"},{"stock_code":"600862","stock_name":"中航高科","fund_code":"000001","fund_name":"华夏成长混合","ratio":"3.24%","count":"380.43","money":"7441.16"},{"stock_code":"600941","stock_name":"中国移动","fund_code":"000001","fund_name":"华夏成长混合","ratio":"2.86%","count":"62.11","money":"6568.75"},{"stock_code":"300395","stock_name":"菲利华","fund_code":"000001","fund_name":"华夏成长混合","ratio":"2.80%","count":"216.80","money":"6417.42"},{"stock_code":"300034","stock_name":"钢研高纳","fund_code":"000001","fund_name":"华夏成长混合","ratio":"2.69%","count":"403.16","money":"6168.33"},{"stock_code":"002371","stock_name":"北方华创","fund_code":"000001","fund_name":"华夏成长混合","ratio":"2.67%","count":"20.07","money":"6134.03"},{"stock_code":"002475","stock_name":"立讯精密","fund_code":"000001","fund_name":"华夏成长混合","ratio":"2.30%","count":"179.77","money":"5287.04"},{"stock_code":"600276","stock_name":"恒瑞医药","fund_code":"000001","fund_name":"华夏成长混合","ratio":"2.22%","count":"111.06","money":"5105.35"},{"stock_code":"600522","stock_name":"中天科技","fund_code":"000001","fund_name":"华夏成长混合","ratio":"1.99%","count":"325.78","money":"4570.69"},{"stock_code":"000100","stock_name":"TCL科技","fund_code":"000001","fund_name":"华夏成长混合","ratio":"1.82%","count":"893.37","money":"4172.03"}]
+[
+  {
+    "stock_code": "002025",
+    "stock_name": "航天电器",
+    "fund_code": "000001",
+    "fund_name": "华夏成长混合",
+    "ratio": "3.46%",
+    "count": "209.92",
+    "money": "7947.67"
+  },
+  {
+    "stock_code": "600862",
+    "stock_name": "中航高科",
+    "fund_code": "000001",
+    "fund_name": "华夏成长混合",
+    "ratio": "3.24%",
+    "count": "380.43",
+    "money": "7441.16"
+  },
+  {
+    "stock_code": "600941",
+    "stock_name": "中国移动",
+    "fund_code": "000001",
+    "fund_name": "华夏成长混合",
+    "ratio": "2.86%",
+    "count": "62.11",
+    "money": "6568.75"
+  },
+  {
+    "stock_code": "300395",
+    "stock_name": "菲利华",
+    "fund_code": "000001",
+    "fund_name": "华夏成长混合",
+    "ratio": "2.80%",
+    "count": "216.80",
+    "money": "6417.42"
+  },
+  {
+    "stock_code": "300034",
+    "stock_name": "钢研高纳",
+    "fund_code": "000001",
+    "fund_name": "华夏成长混合",
+    "ratio": "2.69%",
+    "count": "403.16",
+    "money": "6168.33"
+  },
+  {
+    "stock_code": "002371",
+    "stock_name": "北方华创",
+    "fund_code": "000001",
+    "fund_name": "华夏成长混合",
+    "ratio": "2.67%",
+    "count": "20.07",
+    "money": "6134.03"
+  },
+  {
+    "stock_code": "002475",
+    "stock_name": "立讯精密",
+    "fund_code": "000001",
+    "fund_name": "华夏成长混合",
+    "ratio": "2.30%",
+    "count": "179.77",
+    "money": "5287.04"
+  },
+  {
+    "stock_code": "600276",
+    "stock_name": "恒瑞医药",
+    "fund_code": "000001",
+    "fund_name": "华夏成长混合",
+    "ratio": "2.22%",
+    "count": "111.06",
+    "money": "5105.35"
+  },
+  {
+    "stock_code": "600522",
+    "stock_name": "中天科技",
+    "fund_code": "000001",
+    "fund_name": "华夏成长混合",
+    "ratio": "1.99%",
+    "count": "325.78",
+    "money": "4570.69"
+  },
+  {
+    "stock_code": "000100",
+    "stock_name": "TCL科技",
+    "fund_code": "000001",
+    "fund_name": "华夏成长混合",
+    "ratio": "1.82%",
+    "count": "893.37",
+    "money": "4172.03"
+  }
+]
