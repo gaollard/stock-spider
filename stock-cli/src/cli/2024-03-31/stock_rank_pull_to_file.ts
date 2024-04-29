@@ -1,6 +1,14 @@
 // 来自页面 https://quote.eastmoney.com/center/gridlist.html#hs_a_board
 // 通过排行，可以抓取股票的最新股价
 
+// f12 代号
+// f14 名称
+// f2 最新价
+// f9 市盈率
+// f20 总市值
+// f21 流通市值
+// f8 换手率
+
 import fs from 'fs'
 
 queryList()
