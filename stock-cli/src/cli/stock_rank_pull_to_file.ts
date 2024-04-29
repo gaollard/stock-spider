@@ -22,7 +22,7 @@ async function queryList () {
     all.push(list);
     pageNum++;
   } while (list.length === 1000);
-  fs.writeFileSync('resource/2024-03-31/stock_daily/01.json', JSON.stringify(all, null, 2))
+  fs.writeFileSync('resource/stock_daily/2024-04-28.json', JSON.stringify(all, null, 2))
 }
 
 function query (pageNum: number) {
