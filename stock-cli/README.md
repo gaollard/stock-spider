@@ -1,13 +1,38 @@
 ## 股票被基金持有家数排名
 
 ```sql
-select stock_code, stock_name, count(`fund_code`) as cnt from `t_funder_stock_month` group by `stock_code` order by cnt desc;
+select stock_code, stock_name, count(`fund_code`) as cnt
+from `t_funder_stock_record`
+group by `stock_code`
+order by cnt desc;
 ```
-## 股票查询
 
 ```sql
-select * from `t_funder_stock_month` where `stock_title` = "三七互娱"
+select
+	t1.stock_code,
+	t1.stock_name,
+	t2.`总市值` as `总市值`,
+	t2.`总市值` as `总市值`,
+	count(t1.fund_code) as cnt
+from
+	`t_funder_stock_record` as t1
+left join
+	`t_stock_day` as t2
+on
+	t1.`stock_code` = t2.`stock_code`
+where
+	t2.`总市值` > 200 and t2.`总市值` < 800
+group by `stock_code`
+order by cnt desc;
 ```
+
+## 股票市值筛选
+
+```sql
+select * from `t_stock_day` where `总市值` > 200 and `总市值` < 1000
+```
+
+## 股东筛选
 
 ## 数据表
 
