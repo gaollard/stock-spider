@@ -49,6 +49,7 @@ select * from `t_stock_day` where `总市值` > 200 and `总市值` < 1000
 
 ## 东方财富数据
 - 东方财富基金排行 https://fund.eastmoney.com/data/fundranking.html#tall;c0;r;s1nzf;pn50;ddesc;qsd20230427;qed20240427;qdii;zq;gg;gzbd;gzfs;bbzt;sfbb
+- 东方财富个股每日排名 https://quote.eastmoney.com/center/gridlist.html#hs_a_board
 
 ## 想法
 - 有些基金，他公布的持有股票明明都是跌的，但是他的收益却是正的，明显的换股了，所以他的持仓应该是无效的，需要剔除这部分数据
