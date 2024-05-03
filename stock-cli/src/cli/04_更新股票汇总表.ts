@@ -10,7 +10,10 @@ async function saveToDb() {
   const repo =  dataSource.getRepository(Stock);
   const data = require(path.resolve(__dirname, '../../') + '/resource/stock_daily/2024-04-30.json');
   for (let i = 0; i < data.length; i++) {
-    const array = data[i].filter((it: any) => !(it.stock_name || '').includes('退市'));
+    const array = data[i].filter((it: {
+      stock_name: string;
+      stock_code: number;
+    }) => !(it.stock_name || '').includes('退市'));
     for (let j = 0; j < array.length; j++) {
       console.log(i, j)
       const it = array[j]
@@ -20,6 +23,17 @@ async function saveToDb() {
           stock_code: it['f12'],
         }
       });
+
+      let v = `${it['f12']}`;
+      let used = false;
+      if (v.indexOf('00') === 0) {
+        used = true;
+      } else if (v.indexOf('30') === 0) {
+        used = true;
+      } else if (v.indexOf('60') === 0) {
+        used = true;
+      }
+
       if (one) {
         await repo.update({
           stock_code: it['f12'],
@@ -32,7 +46,8 @@ async function saveToDb() {
           换手率: it['f8'],
           address_one: `${it['f13']}.${it['f12']}`,
           flag: it['f13'],
-          date: '2024-04-30'
+          date: '2024-04-30',
+          used: Number(used)
         })
       } else {
         await repo.save({
@@ -45,7 +60,8 @@ async function saveToDb() {
           换手率: it['f8'],
           address_one: `${it['f13']}.${it['f12']}`,
           flag: it['f13'],
-          date: '2024-04-30'
+          date: '2024-04-30',
+          used: Number(used)
         })
       }
     }
