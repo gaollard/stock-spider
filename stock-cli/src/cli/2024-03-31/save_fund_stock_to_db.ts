@@ -2,7 +2,7 @@ import { dataSource, initDb } from "../../db";
 import * as _ from 'lodash'
 import console from 'console';
 import fs from 'fs'
-import { FunderStockMonth } from "../../entity/funder-stock-month.entity";
+import { FunderStockMonth } from "../../entity/funder-stock-record.entity";
 import path from 'path';
 
 saveToDb();

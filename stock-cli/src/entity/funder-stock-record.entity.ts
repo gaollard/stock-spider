@@ -1,5 +1,9 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
+/**
+ * 基金持仓明细
+ */
+
 @Entity({ name: 't_funder_stock_record' })
 export class FunderStockMonth {
   @PrimaryGeneratedColumn()

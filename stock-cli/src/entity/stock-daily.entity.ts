@@ -1,5 +1,9 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
+/**
+ * 股票每日价格表
+ */
+
 @Entity({ name: 't_stock_day' })
 export class StockDailyTab {
   @PrimaryGeneratedColumn()
@@ -28,4 +32,13 @@ export class StockDailyTab {
 
   @Column({ type: 'date' })
   date: Date;
+
+  @Column({ })
+  address_one: string;
+
+  @Column({ name: 'address_two' })
+  address_two: string;
+
+  @Column({ })
+  flag: number;
 }

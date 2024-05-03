@@ -7,9 +7,8 @@ saveToDb();
 
 async function saveToDb() {
   await initDb()
-  const data = require(path.resolve(__dirname, '../../') + '/resource/stock_daily/2024-04-28.json');
+  const data = require(path.resolve(__dirname, '../../') + '/resource/stock_daily/2024-04-30.json');
   for (let i = 0; i < data.length; i++) {
-    console.log(i)
     const array = data[i].map((it: any) => {
       return {
         stock_name: it['f14'],
@@ -19,7 +18,8 @@ async function saveToDb() {
         总市值: Number.isNaN(Number(it['f20'])) ? 0 : (Number(it['f20']) / 100000000),
         流通市值:  Number.isNaN(Number(it['f21'])) ? 0 : (Number(it['f21']) / 100000000),
         换手率: it['f8'],
-        date: new Date()
+        date: new Date(),
+        addressOne: `${it['f12']}.${it['f13']}`
       }
     }).filter((it: any) => !(it.stock_name || '').includes('退市'))
     await dataSource.getRepository(StockDailyTab).save(array)
