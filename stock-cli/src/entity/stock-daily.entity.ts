@@ -38,7 +38,4 @@ export class StockDailyTab {
 
   @Column({ name: 'address_two' })
   address_two: string;
-
-  @Column({ })
-  flag: number;
 }

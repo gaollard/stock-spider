@@ -10,8 +10,11 @@
 // f8 换手率
 
 import fs from 'fs'
+import dayjs from 'dayjs';
 
 queryList()
+
+const date = dayjs().format('YYYY-MM-DD');
 
 async function queryList () {
   let pageNum = 1;
@@ -22,7 +25,7 @@ async function queryList () {
     all.push(list);
     pageNum++;
   } while (list.length === 1000);
-  fs.writeFileSync('resource/stock_daily/2024-04-30.json', JSON.stringify(all, null, 2))
+  fs.writeFileSync(`resource/stock_daily/${date}.json`, JSON.stringify(all, null, 2))
 }
 
 function query (pageNum: number) {
