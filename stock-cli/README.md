@@ -1,7 +1,5 @@
 ## 股票被基金持有家数排名
 
-> 1
-
 ```sql
 select stock_code, stock_name, count(`fund_code`) as cnt
 from `t_funder_stock_record`
@@ -9,7 +7,7 @@ group by `stock_code`
 order by cnt desc;
 ```
 
-> 2
+## 股票被基金持有家数排名_限制总市值范围
 
 ```sql
 select
@@ -30,8 +28,67 @@ group by `stock_code`
 order by cnt desc;
 ```
 
+## 股票被基金持有家数排名_限制总市值范围
+
+```sql
+select
+	t1.stock_code,
+	t1.stock_name,
+	t2.`总市值` as `总市值`,
+	t2.`总市值` as `总市值`,
+	count(t1.fund_code) as cnt
+from
+	`t_funder_stock_record` as t1
+left join
+	`t_stock_day` as t2
+on
+	t1.`stock_code` = t2.`stock_code`
+where
+	t2.`总市值` > 200 and t2.`总市值` < 800
+group by `stock_code`
+order by cnt desc;
 ```
 
+## 股票被基金持有家数排名_排名150-180_限制总市值范围
+
+``` sql
+select
+	t1.stock_code,
+	t1.stock_name,
+	t2.`总市值` as `总市值`,
+	t2.`总市值` as `总市值`,
+	count(t1.fund_code) as cnt
+from
+	`t_funder_stock_record` as t1
+left join
+	`t_stock_day` as t2
+on
+	t1.`stock_code` = t2.`stock_code`
+where
+	t2.`总市值` > 200 and t2.`总市值` < 800
+group by `stock_code`
+order by cnt desc
+limit 150, 30;
+```
+
+## 股票被基金持有家数排名_排名150-180
+
+``` sql
+select
+	t1.stock_code,
+	t1.stock_name,
+	t2.`总市值` as `总市值`,
+	t2.`总市值` as `总市值`,
+	count(t1.fund_code) as cnt
+from
+	`t_funder_stock_record` as t1
+left join
+	`t_stock_day` as t2
+on
+	t1.`stock_code` = t2.`stock_code`
+group by `stock_code`
+order by cnt desc
+limit 150, 30;
 ```
 
 ## 股票市值筛选
@@ -72,3 +129,12 @@ select * from `t_stock_day` where `总市值` > 200 and `总市值` < 1000
 - 科创板。股票代码以688开头。
 
 60 00 300
+
+## 总结
+
+(1) 限制市值是一个重要因子
+
+```
+t2.`总市值` > 200 and t2.`总市值` < 800
+```
+

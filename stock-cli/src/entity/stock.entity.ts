@@ -51,33 +51,33 @@ export class Stock {
   @Column({ })
   used: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'decimal', nullable: true, precision: 10, scale: 2, })
   price1: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'decimal', nullable: true, precision: 10, scale: 2, })
   price2: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'decimal', nullable: true, precision: 10, scale: 2, })
   price3: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'decimal', nullable: true, precision: 10, scale: 2, })
   price4: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'decimal', nullable: true, precision: 10, scale: 2, })
   price5: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'decimal', nullable: true, precision: 10, scale: 2, })
   price6: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'decimal', nullable: true, precision: 10, scale: 2, })
   price7: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'decimal', nullable: true, precision: 10, scale: 2, })
   price8: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'decimal', nullable: true, precision: 10, scale: 2, })
   price9: number;
 
-  @Column({ nullable: true })
+  @Column({ type: 'decimal', nullable: true, precision: 10, scale: 2, })
   price10: number;
 }

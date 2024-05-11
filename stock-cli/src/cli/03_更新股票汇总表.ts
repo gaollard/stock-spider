@@ -2,13 +2,17 @@ import { dataSource, initDb } from "../db";
 import * as _ from 'lodash'
 import path from 'path';
 import { Stock } from "../entity/stock.entity";
+import dayjs from 'dayjs';
+
+// const date = dayjs().format('YYYY-MM-DD');
+const date = "2024-05-07";
 
 saveToDb();
 
 async function saveToDb() {
   await initDb()
   const repo =  dataSource.getRepository(Stock);
-  const data = require(path.resolve(__dirname, '../../') + '/resource/stock_daily/2024-04-30.json');
+  const data = require(path.resolve(__dirname, '../../') + `/resource/stock_daily/${date}.json`);
   for (let i = 0; i < data.length; i++) {
     const array = data[i].filter((it: {
       stock_name: string;
@@ -17,6 +21,7 @@ async function saveToDb() {
     for (let j = 0; j < array.length; j++) {
       console.log(i, j)
       const it = array[j]
+
       const one = await repo.findOne({
         where: {
           stock_name: it['f14'],
@@ -47,7 +52,17 @@ async function saveToDb() {
           address_one: `${it['f13']}.${it['f12']}`,
           flag: it['f13'],
           date: '2024-04-30',
-          used: Number(used)
+          used: Number(used),
+          price1: one.price,
+          price2: one.price1,
+          price3: one.price2,
+          price4: one.price3,
+          price5: one.price4,
+          price6: one.price5,
+          price7: one.price6,
+          price8: one.price7,
+          price9: one.price8,
+          price10: one.price9,
         })
       } else {
         await repo.save({
