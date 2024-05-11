@@ -4,8 +4,7 @@ import path from 'path';
 import { Stock } from "../entity/stock.entity";
 import dayjs from 'dayjs';
 
-// const date = dayjs().format('YYYY-MM-DD');
-const date = "2024-05-07";
+const date = dayjs().format('YYYY-MM-DD');
 
 saveToDb();
 
