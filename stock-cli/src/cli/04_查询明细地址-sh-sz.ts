@@ -1,12 +1,8 @@
 import { dataSource, initDb } from "../db";
 import * as _ from 'lodash'
-import path from 'path';
 import { Stock } from "../entity/stock.entity";
-import dayjs from 'dayjs';
 import axios from 'axios'
 import { IsNull } from "typeorm";
-
-const date = dayjs().format('YYYY-MM-DD');
 
 function getDetailAddress (address_one: string): Promise<string|null> {
   const url = `https://quote.eastmoney.com/unify/r/` + address_one;
