@@ -5,6 +5,11 @@ import * as _ from 'lodash'
 import { Stock } from "../entity/stock.entity";
 import axios from 'axios'
 import { StockPersonTab } from "../entity/stock-person.entity";
+import { sleep } from "../utils/sleep";
+import { IsNull, Not } from "typeorm";
+import dayjs from 'dayjs';
+
+const date = dayjs().format('YYYY-MM-DD');
 
 jobQueryDetailAddress()
 
@@ -12,9 +17,18 @@ async function jobQueryDetailAddress () {
   await initDb()
   const repo =  dataSource.getRepository(Stock);
   const peopleRepo = dataSource.getRepository(StockPersonTab);
-  let list = await repo.find({ where: {
-    used: 1
-  }, select: ['address_one', 'address_two', 'stock_code', 'stock_name', 'used']});
+  let list = await repo.find({ where: [
+    {
+      used: 1,
+      person_update_date: Not(date),
+    },
+    {
+      used: 1,
+      person_update_date: IsNull(),
+    }
+  ], select: ['address_one', 'address_two', 'stock_code', 'stock_name', 'used']})
+
+  console.log(list.length)
 
   for (let i = 0; i < list.length; i++) {
     const data = list[i];
@@ -22,6 +36,8 @@ async function jobQueryDetailAddress () {
     if (address_two) {
       const code = address_two.split('/');
       let sourceCode = code[code.length - 1].replace('.html', '');
+
+      await sleep(100);
 
       let list: ResultItem[] = [];
       if (sourceCode.includes('sz')) {
@@ -35,6 +51,12 @@ async function jobQueryDetailAddress () {
 
       if (list.length) {
         console.log(i, sourceCode);
+        await repo.update({
+          stock_code: data.stock_code,
+        }, {
+          ...list[0],
+          person_update_date: date
+        });
         await peopleRepo.delete({
           stock_code: data.stock_code,
         });
@@ -51,6 +73,7 @@ async function jobQueryDetailAddress () {
       }
     }
   }
+
   dataSource.destroy();
 }
 
@@ -71,8 +94,10 @@ interface ResultItem {
   十大股东持股合计: number,
   十大流通股东持股合计: number,
   较上期变化: number,
-  end_date: string;
+  person_end_date: string;
 }
+
+// query_people("000511.SZ")
 
 function query_people (sourceCode: string): Promise<Array<ResultItem>> {
   // https://datacenter.eastmoney.com/securities/api/data/v1/get?reportName=RPT_F10_EH_HOLDERNUM&columns=SECUCODE%2CSECURITY_CODE%2CEND_DATE%2CHOLDER_TOTAL_NUM%2CTOTAL_NUM_RATIO%2CAVG_FREE_SHARES%2CAVG_FREESHARES_RATIO%2CHOLD_FOCUS%2CPRICE%2CAVG_HOLD_AMT%2CHOLD_RATIO_TOTAL%2CFREEHOLD_RATIO_TOTAL&quoteColumns=&filter=(SECUCODE%3D%22002616.SZ%22)&pageNumber=1&pageSize=10&sortTypes=-1&sortColumns=END_DATE&source=HSF10&client=PC&v=020948659474490938
@@ -93,7 +118,8 @@ function query_people (sourceCode: string): Promise<Array<ResultItem>> {
     },
     method: 'GET'
   }).then((res: any) => {
-    const data = res.data.result.data;
+    console.log(res.data)
+    let data = res.data.result.data;
     return  (data || []).map(({
       AVG_FREE_SHARES,
       HOLDER_TOTAL_NUM,
@@ -110,7 +136,7 @@ function query_people (sourceCode: string): Promise<Array<ResultItem>> {
         十大股东持股合计: HOLD_RATIO_TOTAL,
         十大流通股东持股合计: FREEHOLD_RATIO_TOTAL,
         较上期变化: TOTAL_NUM_RATIO,
-        end_date: END_DATE
+        person_end_date: END_DATE
       }
     });
   })

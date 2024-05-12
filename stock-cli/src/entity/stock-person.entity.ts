@@ -42,5 +42,5 @@ export class StockPersonTab {
   date: Date;
 
   @Column({ type: 'date' })
-  end_date: Date;
+  person_end_date: Date;
 }

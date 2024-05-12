@@ -32,6 +32,33 @@ export class Stock {
   @Column({ type: 'decimal', precision: 10, scale: 2, })
   换手率: number;
 
+  // 股东信息
+
+  @Column({ nullable: true })
+  人均流通股: number;
+
+  @Column({ nullable: true })
+  股东人数: number;
+
+  @Column({ type: 'decimal', precision: 10, scale: 2, nullable: true })
+  人均持仓金额: number;
+
+  @Column({ type: 'decimal', precision: 10, scale: 2, nullable: true })
+  十大股东持股合计: number;
+
+  @Column({ type: 'decimal', precision: 20, scale: 4, nullable: true })
+  十大流通股东持股合计: number;
+
+  @Column({ type: 'decimal', precision: 20, scale: 4, nullable: true })
+  较上期变化: number;
+
+  @Column({ type: 'date' })
+  person_end_date: Date;
+
+  @Column({ type: 'date', nullable: true })
+  person_update_date: string;
+
+  // 附属信息
   @Column({ type: 'date' })
   date: Date;
 
