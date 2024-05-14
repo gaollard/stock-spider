@@ -31,7 +31,7 @@ export class StockDailyTab {
   换手率: number;
 
   @Column({ type: 'date' })
-  date: Date;
+  date: string;
 
   @Column({ })
   address_one: string;

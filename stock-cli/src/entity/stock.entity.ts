@@ -52,7 +52,7 @@ export class Stock {
   @Column({ type: 'decimal', precision: 20, scale: 4, nullable: true })
   较上期变化: number;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'date', nullable: true, })
   person_end_date: Date;
 
   @Column({ type: 'date', nullable: true })
@@ -68,7 +68,7 @@ export class Stock {
   @Column({ nullable: true })
   address_two: string;
 
-  @Column({ })
+  @Column({ nullable: true })
   flag: number;
 
   // 00开头：A股证券

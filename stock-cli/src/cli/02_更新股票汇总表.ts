@@ -50,7 +50,7 @@ async function saveToDb() {
           换手率: it['f8'],
           address_one: `${it['f13']}.${it['f12']}`,
           flag: it['f13'],
-          date: '2024-04-30',
+          date: date,
           used: Number(used),
           price1: one.price,
           price2: one.price1,
@@ -74,7 +74,7 @@ async function saveToDb() {
           换手率: it['f8'],
           address_one: `${it['f13']}.${it['f12']}`,
           flag: it['f13'],
-          date: '2024-04-30',
+          date: date,
           used: Number(used)
         })
       }

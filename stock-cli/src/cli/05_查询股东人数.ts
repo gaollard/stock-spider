@@ -28,8 +28,6 @@ async function jobQueryDetailAddress () {
     }
   ], select: ['address_one', 'address_two', 'stock_code', 'stock_name', 'used']})
 
-  console.log(list.length)
-
   for (let i = 0; i < list.length; i++) {
     const data = list[i];
     const address_two = data.address_two;
@@ -50,7 +48,7 @@ async function jobQueryDetailAddress () {
       }
 
       if (list.length) {
-        console.log(i, sourceCode);
+        console.log(list.length, i, sourceCode);
         await repo.update({
           stock_code: data.stock_code,
         }, {
