@@ -28,6 +28,8 @@ group by `stock_code`
 order by cnt desc;
 ```
 
+## 查看某只股票的机构数
+
 ## 股票被基金持有家数排名_限制总市值范围
 
 ```sql
