@@ -11,9 +11,9 @@ import dayjs from 'dayjs';
 
 const date = dayjs().format('YYYY-MM-DD');
 
-jobQueryDetailAddress()
+run()
 
-async function jobQueryDetailAddress () {
+async function run () {
   await initDb()
   const repo =  dataSource.getRepository(Stock);
   const peopleRepo = dataSource.getRepository(StockPersonTab);
@@ -29,13 +29,14 @@ async function jobQueryDetailAddress () {
   ], select: ['address_one', 'address_two', 'stock_code', 'stock_name', 'used']})
 
   for (let i = 0; i < list.length; i++) {
+    console.log(i)
     const data = list[i];
     const address_two = data.address_two;
     if (address_two) {
       const code = address_two.split('/');
       let sourceCode = code[code.length - 1].replace('.html', '');
 
-      await sleep(100);
+      await sleep(10);
 
       let list: ResultItem[] = [];
       if (sourceCode.includes('sz')) {
@@ -48,13 +49,15 @@ async function jobQueryDetailAddress () {
       }
 
       if (list.length) {
-        console.log(list.length, i, sourceCode);
+        // 更新汇总表
         await repo.update({
           stock_code: data.stock_code,
         }, {
           ...list[0],
           person_update_date: date
         });
+
+        // 更新记录表
         await peopleRepo.delete({
           stock_code: data.stock_code,
         });
@@ -116,26 +119,31 @@ function query_people (sourceCode: string): Promise<Array<ResultItem>> {
     },
     method: 'GET'
   }).then((res: any) => {
-    console.log(res.data)
-    let data = res.data.result.data;
-    return  (data || []).map(({
-      AVG_FREE_SHARES,
-      HOLDER_TOTAL_NUM,
-      HOLD_RATIO_TOTAL,
-      AVG_HOLD_AMT,
-      FREEHOLD_RATIO_TOTAL,
-      TOTAL_NUM_RATIO,
-      END_DATE
-    }: Item) => {
-      return {
-        人均流通股: AVG_FREE_SHARES,
-        股东人数: HOLDER_TOTAL_NUM,
-        人均持仓金额: AVG_HOLD_AMT,
-        十大股东持股合计: HOLD_RATIO_TOTAL,
-        十大流通股东持股合计: FREEHOLD_RATIO_TOTAL,
-        较上期变化: TOTAL_NUM_RATIO,
-        person_end_date: END_DATE
-      }
-    });
+    if (res.data.result && res.data.result.data) {
+      console.log(`查询股东人数成功-${sourceCode}`)
+      let data = res.data.result.data;
+      return  (data || []).map(({
+        AVG_FREE_SHARES,
+        HOLDER_TOTAL_NUM,
+        HOLD_RATIO_TOTAL,
+        AVG_HOLD_AMT,
+        FREEHOLD_RATIO_TOTAL,
+        TOTAL_NUM_RATIO,
+        END_DATE
+      }: Item) => {
+        return {
+          人均流通股: AVG_FREE_SHARES,
+          股东人数: HOLDER_TOTAL_NUM,
+          人均持仓金额: AVG_HOLD_AMT,
+          十大股东持股合计: HOLD_RATIO_TOTAL,
+          十大流通股东持股合计: FREEHOLD_RATIO_TOTAL,
+          较上期变化: TOTAL_NUM_RATIO,
+          person_end_date: END_DATE
+        }
+      });
+    } else {
+      console.log(`查询股东人数失败-${sourceCode}`)
+      return [];
+    }
   })
 }

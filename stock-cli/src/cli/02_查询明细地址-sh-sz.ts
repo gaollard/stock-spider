@@ -50,9 +50,9 @@ function parseAddress (htmlContent: string) {
   }
 }
 
-jobQueryDetailAddress()
+run()
 
-async function jobQueryDetailAddress () {
+async function run () {
   await initDb()
   const repo =  dataSource.getRepository(Stock);
   const list = await repo.find({ where: {
