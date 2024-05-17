@@ -1,3 +1,22 @@
+```sql
+	select
+	t1.stock_code,
+	t1.stock_name,
+	t2.`总市值` as `总市值`,
+	t2.`总市值` as `总市值`,
+	count(t1.fund_code) as cnt
+from
+	`t_funder_stock_record` as t1
+left join
+	`t_stock` as t2
+on
+	t1.`stock_code` = t2.`stock_code`
+where
+	t2.`总市值` > 100 and t2.`总市值` < 800 and t2.price > t2.price2 and t2.price > t2.price1 and t2.`股东人数` < 40000 
+group by `stock_code`
+order by cnt desc;
+```
+
 ## 股票被基金持有家数排名
 
 ```sql
@@ -126,6 +145,17 @@ select * from `t_stock` as t where t.price > t.price1 and t.price1 > t.price2
 
 ```sql
 select * from `t_stock` as t where t.price > t.price1 and t.price1 > t.price2 and t.`股东人数` < 20000 and t.`总市值` > 200
+```
+
+```sql
+select
+	t.*,
+	count(r.fund_code) as cnt
+from `t_stock` as t
+left join `t_funder_stock_record` as r 
+on t.stock_code = r.stock_code
+
+where t.price > t.price1 and t.price1 > t.price2 and t.`股东人数` < 20000 and t.`总市值` > 200
 ```
 
 ## 股东筛选
