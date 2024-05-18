@@ -17,6 +17,18 @@ group by `stock_code`
 order by cnt desc;
 ```
 
+## 选基金
+
+```sql
+select t1.* from `t_funder_stock_record` as t1 where `stock_name` = "顺丰控股" and t1.fund_code in (select fund_code from `t_funder_stock_record` where `stock_name` = "白云机场")
+
+
+select t1.* from `t_funder_stock_record` as t1 where `stock_name` = "航天电器" and t1.fund_code in (select fund_code from `t_funder_stock_record` where `stock_name` = "中航高科")
+
+
+select t1.* from `t_funder_stock_record` as t1 where `stock_name` = "顺丰控股" 
+```
+
 ## 股票被基金持有家数排名
 
 ```sql
