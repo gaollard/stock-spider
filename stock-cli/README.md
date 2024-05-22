@@ -1,5 +1,7 @@
+### 01 持仓基金_市值限制_股东人数限制_01_效果不好
+
 ```sql
-	select
+select
 	t1.stock_code,
 	t1.stock_name,
 	t2.`总市值` as `总市值`,
@@ -17,19 +19,7 @@ group by `stock_code`
 order by cnt desc;
 ```
 
-## 选基金
-
-```sql
-select t1.* from `t_funder_stock_record` as t1 where `stock_name` = "顺丰控股" and t1.fund_code in (select fund_code from `t_funder_stock_record` where `stock_name` = "白云机场")
-
-
-select t1.* from `t_funder_stock_record` as t1 where `stock_name` = "航天电器" and t1.fund_code in (select fund_code from `t_funder_stock_record` where `stock_name` = "中航高科")
-
-
-select t1.* from `t_funder_stock_record` as t1 where `stock_name` = "顺丰控股" 
-```
-
-## 股票被基金持有家数排名
+## 02_股票被基金持有家数排名
 
 ```sql
 select stock_code, stock_name, count(`fund_code`) as cnt
@@ -57,28 +47,27 @@ group by `stock_code`
 order by cnt desc;
 ```
 
-## 股票被基金持有家数排名_限制总市值范围
+## 04_股票连续上涨
+
+```sql
+-- 3日
+select * from `t_stock` as t where t.price > t.price1 and t.price1 > t.price2
+```
+
+```sql
+select * from `t_stock` as t where t.price > t.price1 and t.price1 > t.price2 and t.`股东人数` < 20000 and t.`总市值` > 200
+```
 
 ```sql
 select
-	t1.stock_code,
-	t1.stock_name,
-	t2.`总市值` as `总市值`,
-	t2.`总市值` as `总市值`,
-	count(t1.fund_code) as cnt
-from
-	`t_funder_stock_record` as t1
-left join
-	`t_stock_day` as t2
-on
-	t1.`stock_code` = t2.`stock_code`
-where
-	t2.`总市值` > 200 and t2.`总市值` < 800
-group by `stock_code`
-order by cnt desc;
-```
+	t.*,
+	count(r.fund_code) as cnt
+from `t_stock` as t
+left join `t_funder_stock_record` as r 
+on t.stock_code = r.stock_code
 
-## 查看某只股票的机构数
+where t.price > t.price1 and t.price1 > t.price2 and t.`股东人数` < 20000 and t.`总市值` > 200
+```
 
 ## 股票被基金持有家数排名_限制总市值范围
 
@@ -149,27 +138,6 @@ limit 150, 30;
 select * from `t_stock_day` where `总市值` > 200 and `总市值` < 1000
 ```
 
-## 股票连续上涨3日
-
-```sql
-select * from `t_stock` as t where t.price > t.price1 and t.price1 > t.price2
-```
-
-```sql
-select * from `t_stock` as t where t.price > t.price1 and t.price1 > t.price2 and t.`股东人数` < 20000 and t.`总市值` > 200
-```
-
-```sql
-select
-	t.*,
-	count(r.fund_code) as cnt
-from `t_stock` as t
-left join `t_funder_stock_record` as r 
-on t.stock_code = r.stock_code
-
-where t.price > t.price1 and t.price1 > t.price2 and t.`股东人数` < 20000 and t.`总市值` > 200
-```
-
 ## 股东筛选
 
 ## 数据表
@@ -211,3 +179,14 @@ where t.price > t.price1 and t.price1 > t.price2 and t.`股东人数` < 20000 an
 t2.`总市值` > 200 and t2.`总市值` < 800
 ```
 
+## 根本股票查询基金
+
+```sql
+select t1.* from `t_funder_stock_record` as t1 where `stock_name` = "顺丰控股" and t1.fund_code in (select fund_code from `t_funder_stock_record` where `stock_name` = "白云机场")
+
+
+select t1.* from `t_funder_stock_record` as t1 where `stock_name` = "航天电器" and t1.fund_code in (select fund_code from `t_funder_stock_record` where `stock_name` = "中航高科")
+
+
+select t1.* from `t_funder_stock_record` as t1 where `stock_name` = "顺丰控股" 
+```
