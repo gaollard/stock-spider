@@ -27,4 +27,4 @@ import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(utc)
 
-console.log(dayjs(1715699039000).utc().local().format())
+console.log(dayjs().format("d"))
