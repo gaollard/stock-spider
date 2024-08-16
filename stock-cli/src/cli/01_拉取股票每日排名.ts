@@ -1,4 +1,4 @@
-import { dataSource, initDb } from "../db";
+import { dataSource } from "../db";
 import * as _ from 'lodash'
 import dayjs from 'dayjs';
 import axios from 'axios';
@@ -128,7 +128,6 @@ export async function run() {
     })
   }
 
-  await initDb()
   const data = all = await queryList()
   console.log(`queryList success`);
 
