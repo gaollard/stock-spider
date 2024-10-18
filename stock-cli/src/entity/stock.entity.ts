@@ -1,9 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, Index } from "typeorm";
 
-/**
- * 股票信息表
- */
-
 @Entity({ name: 't_stock' })
 export class Stock {
   @PrimaryGeneratedColumn()
@@ -34,6 +30,9 @@ export class Stock {
 
   @Column({ nullable: true })
   人均流通股: number;
+
+  @Column({ nullable: true })
+  涨跌幅: string;
 
   @Column({ nullable: true })
   股东人数: number;
