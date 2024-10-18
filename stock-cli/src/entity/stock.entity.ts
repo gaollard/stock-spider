@@ -32,8 +32,6 @@ export class Stock {
   @Column({ type: 'decimal', precision: 10, scale: 2, })
   换手率: number;
 
-  // 股东信息
-
   @Column({ nullable: true })
   人均流通股: number;
 

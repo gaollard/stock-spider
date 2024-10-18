@@ -30,12 +30,18 @@ export class StockDailyTab {
   @Column({ type: 'decimal', precision: 10, scale: 2, })
   换手率: number;
 
+  @Column({ type: 'decimal', precision: 10, scale: 2, })
+  振幅: string;
+
+  @Column({ type: 'decimal', precision: 10, scale: 2, })
+  最高: string;
+
+  @Column({ type: 'decimal', precision: 10, scale: 2, })
+  最低: string;
+
+  @Column({ type: 'decimal', precision: 10, scale: 2, })
+  开盘: string;
+
   @Column({ type: 'date' })
   date: string;
-
-  @Column({ })
-  address_one: string;
-
-  @Column({ name: 'address_two' })
-  address_two: string;
 }

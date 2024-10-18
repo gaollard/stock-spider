@@ -19,6 +19,8 @@ function run () {
   }
 }
 
+console.log('11')
+
 initDb().then(async () => {
   console.log('started')
   // crawlerFunderList()
