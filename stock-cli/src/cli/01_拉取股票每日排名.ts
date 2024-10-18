@@ -49,7 +49,7 @@ interface StockItem {
 const map: Record<string, string> = {
   f12: 'stock_code',
   f14: 'stock_name',
-  f2: '最新价格',
+  f2: 'price',
   f3: '涨跌幅',
   f5: '成交量',
   f6: '成交额',
