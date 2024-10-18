@@ -77,7 +77,7 @@ function queryByPageSize (pageNum: number) {
         address_two: '',
         price: Number.isNaN(Number(it['f2'])) ? 0 : Number(it['f2']),
         市盈率: Number.isNaN(Number(it['f9'])) ? 0 : Number(it['f9']),
-        振幅: Number.isNaN(Number(it['f9'])) ? 0 : Number(it['f9']),
+        振幅: Number.isNaN(Number(it['f7'])) ? 0 : Number(it['f7']),
         最高:  Number.isNaN(Number(it['f15'])) ? 0 : Number(it['f15']),
         最低:  Number.isNaN(Number(it['f16'])) ? 0 : Number(it['f16']),
         开盘:  Number.isNaN(Number(it['f17'])) ? 0 : Number(it['f17']),
